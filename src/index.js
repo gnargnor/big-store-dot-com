@@ -1,13 +1,14 @@
 let choo = require('choo');
 let html = require('choo/html');
+let css = require('sheetify');
 
 let store = require('./store/mainStore');
 
 let layout = require('./templates/_layout');
 let homepage = require('./templates/homepage');
-let cats = require('./templates/cats');
+let cats = require('./templates/cats/cats');
 let shopping = require('./templates/shopping');
-let checkout = require('./templates/checkout');
+let checkout = require('./templates/checkout/checkout');
 
 let app = choo()
 
