@@ -7,7 +7,7 @@ let store = require('./store/mainStore');
 let layout = require('./templates/_layout');
 let homepage = require('./templates/homepage');
 let cats = require('./templates/cats/cats');
-let shopping = require('./templates/shopping');
+let shopping = require('./templates/shopping/shopping');
 let checkout = require('./templates/checkout/checkout');
 
 let app = choo()
