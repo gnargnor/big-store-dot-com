@@ -10,8 +10,9 @@ module.exports = (state, emit) => {
             <div style=${state.style.navBar}>
               <ul>
                 <li style=${state.style.navItem}><a href="/">Home</a></li>
-                <li style=${state.style.navItem}><a href="/cats">Cats</a></li>
+                <li style=${state.style.navItem}><a href="/callcops">Call the Cops</a></li>
                 <li style=${state.style.navItem}><a href="/shopping">Shopping</a></li>
+                <li style=${state.style.navItem}><a href="/cats">Cats</a></li>
                 <li style=${state.style.navItem}><a href="/checkout">Checkout</a></li>
               </ul>
             </div>  

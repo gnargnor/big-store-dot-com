@@ -31,6 +31,38 @@ module.exports = (state, emitter) => {
       padding:5px 10px;
       display: inline-block;
       list-style: none;
-      cursor: pointer;`
+      cursor: pointer;`,
+
+    searchInput: `
+      margin-left: 10px;
+      width: 200px;`,
+
+    searchButton: `
+      float: right;
+      display: inline-block;  
+    `,
+
+    row: `
+      height: 100px;
+      display: block;
+      background: lightyellow;
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+    `,
+    resultRight: `
+      float: right;
+      display: inline;
+
+    `,
+
+    image: `
+      height:80px;
+    `,
+
+    resultLeft: `
+      float: left;
+      display: inline;
+    `
   }
 }

@@ -1,10 +1,11 @@
-let html = require('choo/html');
+const html = require('choo/html');
 
 /** views */
-let header = require('./header');
-let cats = require('./cats/cats');
-let shopping = require('./shopping/shopping');
-let checkout = require('./checkout/checkout');
+const header = require('./header');
+const cats = require('./cats/cats');
+const shopping = require('./shopping/shopping');
+const checkout = require('./checkout/checkout');
+const callcops = require('./callcops/callcops');
 
 module.exports = (view, state, emit) => {
   return html`

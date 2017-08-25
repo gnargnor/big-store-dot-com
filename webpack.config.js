@@ -5,18 +5,18 @@ const config = {
   context: path.resolve(__dirname),
   entry: [
   //   'eventsource-polyfill',
-    path.resolve(__dirname, './src/index.js'),
+    path.resolve(__dirname, 'src/index.js'),
   ],
   devtool: 'cheap-eval-source-map',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'server/dist'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
     rules: [{
       test: /\.js$/,
-      include: path.resolve(__dirname),
+      include: path.resolve(__dirname, 'server/dist'),
       use: [{
         loader: 'babel-loader',
         options: {
