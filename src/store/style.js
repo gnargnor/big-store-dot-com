@@ -37,6 +37,10 @@ module.exports = (state, emitter) => {
       margin-left: 10px;
       width: 200px;`,
 
+    dropdown: `
+      margin-left: 10px;
+    `,
+
     searchButton: `
       float: right;
       display: inline-block;  
@@ -53,7 +57,7 @@ module.exports = (state, emitter) => {
     resultRight: `
       float: right;
       display: inline;
-
+      text-align: right;
     `,
 
     image: `

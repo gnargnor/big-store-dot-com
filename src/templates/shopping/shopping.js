@@ -6,6 +6,10 @@ module.exports = (state, emit) => {
     <div class="shopping">
         <label>Search ${state.header.storeName} Products:</label>
         <input style=${state.style.searchInput} type="text" value=${searchCriteria} oninput=${updateSearchCriteria}/>
+        <select name="categories" style=${state.style.dropdown}>
+          ${generateCategories()}
+        </select>
+
         <button style=${state.style.searchButton} onclick=${submitSearch}>Submit</button>
         <br />
         <br />
@@ -38,9 +42,18 @@ module.exports = (state, emit) => {
           <img src=${result.image} style=${state.style.image} />
         </div>
       </div>
-        
       `
-    })
+    });
+  }
+
+  function generateCategories() {
+    let categories = state.categories;
+    console.log(categories);
+    return categories.map(category => {
+      return html`
+        <option value=${category.categoryId}>${category.name}</option>
+      `
+    });
   }
 
   function updateSearchCriteria(e) {
