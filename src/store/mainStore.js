@@ -1,16 +1,17 @@
 /** state */
-let style = require('./style');
-let cats = require('./cats');
-let header = require('./header');
-let shopping = require('./shopping');
-let callcops = require('./callcops');
+const style = require('./style');
+const cats = require('./cats');
+const header = require('./header');
+const shopping = require('./shopping');
+const callcops = require('./callcops');
 
 /** emitters */
-let clickCats = require('./emitters/clickCats');
-let clickOneCat = require('./emitters/clickOneCat');
-let addCatToCart = require('./emitters/addCatToCart');
-let updateSearchCriteria = require('./emitters/updateSearchCriteria');
-let submitSearch = require('./emitters/submitSearch');
+const clickCats = require('./emitters/clickCats');
+const clickOneCat = require('./emitters/clickOneCat');
+const addCatToCart = require('./emitters/addCatToCart');
+const updateSearchCriteria = require('./emitters/updateSearchCriteria');
+const updateCategory = require('./emitters/updateCategory');
+const submitSearch = require('./emitters/submitSearch');
 const callTheCops = require('./emitters/callTheCops');
 
 module.exports = (state, emitter) => {
@@ -26,6 +27,7 @@ module.exports = (state, emitter) => {
   emitter.on('clickOneCat', (catID) => clickOneCat(catID, state, emitter));
   emitter.on('addCatToCart', (catID) => addCatToCart(catID, state, emitter));
   emitter.on('updateSearchCriteria', (searchCriteria) => updateSearchCriteria(searchCriteria, state, emitter));
+  emitter.on('updateCategory', (newCategory) => updateCategory(newCategory, state, emitter));
   emitter.on('submitSearch', () => submitSearch(state, emitter));
   emitter.on('callTheCops', () => callTheCops(state, emitter));
 }

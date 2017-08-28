@@ -6,7 +6,7 @@ module.exports = (state, emit) => {
     <div class="shopping">
         <label>Search ${state.header.storeName} Products:</label>
         <input style=${state.style.searchInput} type="text" value=${searchCriteria} oninput=${updateSearchCriteria}/>
-        <select name="categories" style=${state.style.dropdown}>
+        <select name="categories" style=${state.style.dropdown} onchange=${selectCategory}>
           ${generateCategories()}
         </select>
 
@@ -18,6 +18,10 @@ module.exports = (state, emit) => {
     </div>
   `
 
+  function selectCategory(e){
+    emit('updateCategory', e.target.value);
+  }
+
   function displayResultHeader() {
     let header = html`
     <div>
@@ -25,7 +29,6 @@ module.exports = (state, emit) => {
     </div>
       
     `;
-    console.log(state.searchResults);
     let display = (state.searchResults[0]) ? header : '';
     return display;
   }
@@ -34,12 +37,12 @@ module.exports = (state, emit) => {
     return state.searchResults.map(result => {
       return html`
       <div style=${state.style.row}>
-        <div style=${state.style.resultRight}>
-          <h3>${result.name}</h3>
-          <p>${result.regularPrice}</p>
-        </div>
         <div style=${state.style.resultLeft}>
           <img src=${result.image} style=${state.style.image} />
+        </div>
+        <div style=${state.style.resultRight}>
+          <p>${result.name}</p>
+          <p>${result.regularPrice}</p>
         </div>
       </div>
       `
@@ -48,11 +51,19 @@ module.exports = (state, emit) => {
 
   function generateCategories() {
     let categories = state.categories;
+    let currentCategory = state.category;
     console.log(categories);
     return categories.map(category => {
-      return html`
-        <option value=${category.categoryId}>${category.name}</option>
+      if (category.categoryId === currentCategory) {
+        console.log(category);
+        return `
+        <option value=${category} selected>${category.name}</option>
+        `
+      } else {
+        return html`
+        <option value=${category}>${category.name}</option>
       `
+      }
     });
   }
 

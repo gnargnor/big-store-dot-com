@@ -16,7 +16,7 @@ module.exports = (state, emitter) => {
       border-radius: 6px;`,
 
     navItem: 
-      `padding:5px 10px; display: inline-block; list-style: none;`,
+      `padding:5px 10px; display: inline-block; list-style: none; flex: 1 1 20%;`,
 
     headerH1: `
       font-size: 50px;
@@ -47,7 +47,10 @@ module.exports = (state, emitter) => {
     `,
 
     row: `
-      height: 100px;
+      width: 100%;
+      whitespace: normal;
+      height: auto;
+      min-height: 100px;
       display: block;
       background: lightyellow;
       padding: 10px;
@@ -55,18 +58,24 @@ module.exports = (state, emitter) => {
       border-radius: 6px;
     `,
     resultRight: `
-      float: right;
-      display: inline;
-      text-align: right;
+      height: 100%;
+      width: 60%
+      flex:60%;
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
     `,
 
     image: `
-      height:80px;
+      height:100px;
     `,
 
     resultLeft: `
-      float: left;
-      display: inline;
+    height: 100%;
+      width: 40%;
+      flex: 40%;
+      display: inline-block;
+      vertical-align: middle;
     `
   }
 }
