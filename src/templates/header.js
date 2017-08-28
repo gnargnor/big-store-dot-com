@@ -8,12 +8,12 @@ module.exports = (state, emit) => {
               <h2 style=${state.style.headerH2}>${state.header.tagLine}</h2>
             </div> 
             <div style=${state.style.navBar}>
-              <ul>
-                <li style=${state.style.navItem}><a href="/">Home</a></li>
-                <li style=${state.style.navItem}><a href="/callcops">Call the Cops</a></li>
-                <li style=${state.style.navItem}><a href="/shopping">Shopping</a></li>
-                <li style=${state.style.navItem}><a href="/cats">Cats</a></li>
-                <li style=${state.style.navItem}><a href="/checkout">Checkout</a></li>
+              <ul style=${state.style.navList}>
+                <li style=${state.style.navItem}><a href="/" style=${state.style.navLink}>Home</a></li>
+                <li style=${state.style.navItem}><a href="/callcops" style=${state.style.navLink}>Call the Cops</a></li>
+                <li style=${state.style.navItem}><a href="/shopping" style=${state.style.navLink}>Shopping</a></li>
+                <li style=${state.style.navItem}><a href="/cats" style=${state.style.navLink}>Cats</a></li>
+                <li style=${state.style.navItem}><a href="/checkout" style=${state.style.navLink}>Checkout</a></li>
               </ul>
             </div>  
           </div>  

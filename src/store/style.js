@@ -12,11 +12,25 @@ module.exports = (state, emitter) => {
       color: blue;`,
 
     navBar: `
-      margin: 0 auto; background: white;
+      margin: 10px auto;
+      background: white;
       border-radius: 6px;`,
 
-    navItem: 
-      `padding:5px 10px; display: inline-block; list-style: none; flex: 1 1 20%;`,
+    navList: `
+      margin: 0 auto;
+      padding: 0;
+      border-radius: 6px;`,
+
+    navItem: `
+      padding: 5px 0;
+      display: inline-block;
+      list-style: none;
+      flex: 20%;
+      width: 20%;
+      text-align: center;`,
+
+    navLink: `
+      text-decoration: none;`,
 
     headerH1: `
       font-size: 50px;
@@ -38,44 +52,55 @@ module.exports = (state, emitter) => {
       width: 200px;`,
 
     dropdown: `
-      margin-left: 10px;
-    `,
+      margin-left: 10px;`,
 
     searchButton: `
-      float: right;
-      display: inline-block;  
-    `,
+      margin-left: 10px;
+      display: inline-block;`,
 
     row: `
       width: 100%;
       whitespace: normal;
+      overflow: auto;
       height: auto;
-      min-height: 100px;
+      min-height: 200px;
       display: block;
       background: lightyellow;
       padding: 10px;
       margin-bottom: 6px;
-      border-radius: 6px;
-    `,
+      border-radius: 6px;`,
+
     resultRight: `
+      float: left;
       height: 100%;
-      width: 60%
-      flex:60%;
+      width: 80%
+      flex:80%;
       display: inline-block;
       text-align: left;
       vertical-align: top;
-    `,
+      padding: 0 10px;
+      `,
 
     image: `
-      height:100px;
-    `,
+      height:200px;
+      
+      `,
 
     resultLeft: `
-    height: 100%;
-      width: 40%;
-      flex: 40%;
+      float: left;
+      height: 100%;
+      width: 20%;
+      flex: 20%;
+      overflow: hidden;
       display: inline-block;
       vertical-align: middle;
-    `
+      text-align: center;`,
+
+    clearFloat: `
+      clear: both;`,
+    
+    floatingLineBreak: `
+      content: \A;
+      `
   }
 }

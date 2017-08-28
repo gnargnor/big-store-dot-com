@@ -1,9 +1,10 @@
 module.exports = (state, emitter) => {
-  state.searchCriteria = "";
+  state.searchCriteria = '';
+  state.currentSearch = '';
   state.searchResults = [];
-  state.category="";
+  state.category = 'blank';
   state.categories = [
-    {name: 'Search All Categories', categoryId: ''},
+    {name: 'Search All Categories', categoryId: 'blank'},
     {name: 'All Cell Phones with Plans', categoryId: '&(categoryPath.id=pcmcat209400050001)'},
     {name: 'Desktop & All-in-One Computers', categoryId: '&(categoryPath.id=abcat0501000)'},
     {name: 'Digital Cameras', categoryId: '&(categoryPath.id=abcat0401000)'},
