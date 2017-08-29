@@ -47,7 +47,7 @@ module.exports = (state, emitter) => {
             return;
           case 'Software' :
             productDetails.typeDetails = parseSoftware(result);
-            parsedDetils.push(productDetails);
+            parsedDetails.push(productDetails);
             return;
           case 'Bundle' :
             productDetails.typeDetails = parseBundle(result);

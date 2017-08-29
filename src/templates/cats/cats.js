@@ -6,20 +6,20 @@ let catCart = require('./subviews/catCart');
 
 module.exports = (state, emit) => {
   return html`
-    <div>
-      ${displayCats(state, emit)}
-      <br />
-      <div class="shopping">
-        <div style="display: inline-block; float: left; padding: 10px; margin-left: 5%;margin-top:4px; background: lightyellow; border: 1px solid black; border-radius: 8px; width: 40%;">
-          <h3>Current Cat</h3>
+    <div style=${state.style.catShopping}>
+      <div style=${state.style.catShoppingContainer}>
+        <div style=${state.style.catNav}>
+          ${displayCats(state, emit)}
+        </div>
+        <div style=${state.style.catShoppingLeft}>
+          <h3 style=${state.style.catH3}>Current Cat</h3>
           ${focusCat(state, emit)}
         </div>
-        <div style="display: inline-block; float: right; padding: 10px; margin-right: 5%; margin-top:4px; background: lightyellow; border: 1px solid black; border-radius: 8px; width: 40%;">
-          <h3>Cat Cart</h3>
+        <div style=${state.style.catShoppingRight}>
+          <h3 style=${state.style.catH3}>Cat Cart</h3>
           ${catCart(state)}
         </div>
       </div>
-      <br />
     </div>  
   `
 }

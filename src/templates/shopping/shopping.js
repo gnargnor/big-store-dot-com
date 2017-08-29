@@ -3,17 +3,21 @@ const html = require('choo/html');
 module.exports = (state, emit) => {
   let searchCriteria = state.searchCriteria;
   return html`
-    <div class="shopping">
-        <label>Search ${state.header.storeName} Products:</label>
-        <input style=${state.style.searchInput} type="text" value=${searchCriteria} oninput=${updateSearchCriteria}/>
-        <select name="categories" style=${state.style.dropdown} onchange=${selectCategory}>
-          ${generateCategories()}
-        </select>
-        <button style=${state.style.searchButton} onclick=${submitSearch}>Submit</button>
-        <br />
-        <br />
-        ${displayResultHeader()}
-        ${displayResults()}
+    <div style=${state.style.shopping}>
+      <div style=${state.style.shoppingContainer}>
+        <div style=${state.style.searchBar}>
+          <label>Search ${state.header.storeName} Products:</label>
+          <input style=${state.style.searchInput} type="text" value=${searchCriteria} oninput=${updateSearchCriteria}/>
+          <select name="categories" style=${state.style.dropdown} onchange=${selectCategory}>
+            ${generateCategories()}
+          </select>
+          <button style=${state.style.searchButton} onclick=${submitSearch}>Submit</button>
+          <br />
+          <br />
+          ${displayResultHeader()}
+          ${displayResults()}
+        </div>
+      </div>
     </div>
   `
 
