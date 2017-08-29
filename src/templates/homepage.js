@@ -2,13 +2,14 @@ let html = require('choo/html');
 
 module.exports = (state, emit) => {
   return html`
-    <div class="homepage" style=${state.style.homepage}>
-      <p>You only need to know about the <span onclick=${clickCats}>cats.</span></p>
+    <div style=${state.style.homepage}>
+      <div style=${state.style.homepageContainer}>
+        <p>You only need to know about the <span style=${state.style.clickCats} onclick=${clickCats}>cats.</span></p>
+      </div>
     </div>
   `
   
   function clickCats(){
-    console.log('clicked cats');
     emit('clickCats');
   }
 }

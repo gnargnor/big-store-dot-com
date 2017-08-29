@@ -4,8 +4,8 @@ module.exports = (state, emit) => {
   return html`
           <div class="header">
             <div style=${state.style.header}>
+              <p style=${state.style.headerP}>${state.header.tagLine}</p>
               <h1 style=${state.style.headerH1}>${state.header.storeName}</h1>
-              <h2 style=${state.style.headerH2}>${state.header.tagLine}</h2>
             </div> 
             <div style=${state.style.navBar}>
               <ul style=${state.style.navList}>

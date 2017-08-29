@@ -9,12 +9,17 @@ module.exports = (state, emitter) => {
 
     homepage: `
       color: white;
+      background: #003b64;
       height: 100%;
-      min-height: 500px;
       padding: 20px 30px;`,
 
+    homepageContainer: `
+      max-width: 1008px;
+      margin: 0 auto;
+    `,
+
     header: `
-      padding: 20px 30px;
+      padding: 10px 30px;
       max-width: 1008px;
       margin: 0 auto;
     `,
@@ -26,7 +31,7 @@ module.exports = (state, emitter) => {
     navList: `
       max-width: 1008px;
       margin: 0 auto;
-      padding: 0;`,
+      padding: 5px 0;`,
 
     navItem: `
       padding: 5px 0;
@@ -34,11 +39,13 @@ module.exports = (state, emitter) => {
       list-style: none;
       flex: 20%;
       width: 20%;
+      font-size: 14px;
       text-align: center;`,
 
     navLink: `
       text-decoration: none;
-      color: white;`,
+      color: white;
+      `,
     
     navBreak: `
       background: white;
@@ -50,10 +57,23 @@ module.exports = (state, emitter) => {
       margin: 0;
       padding-bottom: 0;`,
 
-    headerH2: `
-      font-size: 14px;
-      margin: 0; padding-left: 10px;
-      padding-top: 5px;`,
+    headerP: `
+      font-size: 13px;
+      font-style: italic;
+      margin: 0;
+      padding-bottom: 8px;
+      padding-left: 2px;`,
+
+    catNav: `
+      margin: 0;
+      padding: 12px 0;
+      background: lightgrey;
+    `,
+
+    catNavContainer: `
+      max-width: 1008px;
+      margin: 0 auto;
+    `,
       
     catItem: `
       padding:5px 10px;
@@ -82,16 +102,16 @@ module.exports = (state, emitter) => {
       display: inline-block;
       float: left;
       padding: 10px 0;
-      background: #002e4e;
-      color: white;
+      background: white;
+      color: #002e4e;
       width:50%;`,
 
     catShoppingRight: `
       display: inline-block;
       float: left;
       padding: 10px 0px;
-      background: #002e4e;
-      color: white;
+      background: white;
+      color: #002e4e;
       width: 50%;`,
 
     shopping: `
@@ -101,13 +121,21 @@ module.exports = (state, emitter) => {
 
     shoppingContainer: `
       max-width: 1008px;
-      padding: 20px 30px;
+      padding: 0 30px;
       margin: 0 auto;
       color: #003b64;
     `,
 
     searchBar: `
-      text-align: center;
+      padding: 16px 0;
+      background: lightgrey;
+      margin: 0;
+      color: #003b64;
+    `,
+
+    searchBarContainer: `
+      max-width: 1008px;
+      margin: 0 auto;
     `,
 
     searchInput: `
@@ -165,6 +193,35 @@ module.exports = (state, emitter) => {
     
     floatingLineBreak: `
       content: \A;
-      `
+      `,
+
+    checkout: `
+      background: white;
+    `,
+
+    checkoutContainer: `
+      max-width: 1008px;
+      margin: 0 auto;
+      color: #002e4e;
+    `,
+
+    cart: `
+      margin: 10px auto;
+      padding: 10px;
+      background: #aae0ec;
+      color: black;
+      height: auto;
+      min-height: 200px;
+    `,
+
+    callCops: `
+      background: white;
+    `,
+
+    callCopsContainer: `
+      max-width: 1008px;
+      margin: 0 auto;
+      color: #002e4e;
+    `
   }
 }
