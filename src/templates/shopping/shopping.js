@@ -56,9 +56,9 @@ module.exports = (state, emit) => {
           <img src=${generalProperties.image} style=${state.style.image} />
         </div>
         <div style=${state.style.resultRight}>
-          <p style=${state.style.floatingLineBreak}>${typeDetails.productName}</p>
-          <p>Regular Price: ${regularPrice.format(generalProperties.regularPrice * 1.3)}</p>
-          <p>Sale Price: ${regularPrice.format(generalProperties.salePrice * 1.2)}</p>
+          <p style=${state.style.productName}>${typeDetails.productName}</p>
+          <p style=${state.style.label}>Regular Price: <span style=${state.style.price}>${regularPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
+          <p style=${state.style.label}>Sale Price: <span style=${state.style.salePrice}>${regularPrice.format(generalProperties.salePrice * 1.2)}</span></p>
         </div>
         <div style=${state.style.clearFloat}></div>
       </div>

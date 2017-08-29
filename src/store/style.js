@@ -182,20 +182,40 @@ module.exports = (state, emitter) => {
       `,
 
     resultRight: `
-      float: left;
+      float: right;
       height: 100%;
       width: 70%
       flex:70%;
       display: inline-block;
-      text-align: left;
+      text-align: right;
       vertical-align: top;
       padding: 0 10px;
       `,
+    
+    productName: `
+      font-size: 14px;
+      font-style: uppercase;
+    `,
+
+    label: `
+      font-size: 10px;
+      font-style: italic;
+    `,
+
+    price: `
+      font-size: 20px;
+      text-decoration: line-through;
+    `,
+
+    salePrice: `
+      font-size: 28px;
+    `,
 
     clearFloat: `
       clear: both;`,
     
     floatingLineBreak: `
+      white-space: pre-wrap;
       content: \A;
       `,
 
