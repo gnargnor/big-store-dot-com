@@ -34,7 +34,7 @@ module.exports = (state, emit) => {
     let currentCategoy = state.category;
     let header = html`
     <div>
-      <h2>search results for <b>${state.currentSearch}</b></h2>
+      <p>search results for <span style=${state.style.searchTerm}>${state.currentSearch}</span></p>
     </div>
     `;
     let display = (state.searchResults[0]) ? header : '';
@@ -43,16 +43,22 @@ module.exports = (state, emit) => {
 
   function displayResults() {
     let searchResults = state.searchResults;
-    console.log(searchResults);
-    return searchResults.map(result => {
+    let parsedDetails = state.parsedDetails;
+    console.log('parsedDetails ', parsedDetails);
+    let regularPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 2});
+    return parsedDetails.map(result => {
+      let generalProperties = result.generalProperties;
+      let typeDetails = result.typeDetails;
+      let type = typeDetails.type;
       return html`
       <div style=${state.style.row}>
         <div style=${state.style.resultLeft}>
-          <img src=${result.image} style=${state.style.image} />
+          <img src=${generalProperties.image} style=${state.style.image} />
         </div>
         <div style=${state.style.resultRight}>
-          <p style=${state.style.floatingLineBreak}>${result.name}</p>
-          <p>${result.regularPrice}</p>
+          <p style=${state.style.floatingLineBreak}>${typeDetails.productName}</p>
+          <p>Regular Price: ${regularPrice.format(generalProperties.regularPrice * 1.3)}</p>
+          <p>Sale Price: ${regularPrice.format(generalProperties.salePrice * 1.2)}</p>
         </div>
         <div style=${state.style.clearFloat}></div>
       </div>

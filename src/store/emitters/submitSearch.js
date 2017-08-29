@@ -11,7 +11,7 @@ module.exports = (state, emitter) => {
       state.searchCriteria = '';
       state.category = 'blank';
       state.searchResults = result.data.products;
-      state.searchResults.parsedDetails = parsedDetails;
+      state.parsedDetails = parsedDetails;
       emitter.emit('render');
     })
     .catch(err => {

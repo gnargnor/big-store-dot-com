@@ -149,6 +149,10 @@ module.exports = (state, emitter) => {
       margin-left: 10px;
       display: inline-block;`,
 
+    searchTerm: `
+      font-size: 28px;
+    `,
+
     row: `
       width: 100%;
       whitespace: normal;

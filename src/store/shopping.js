@@ -2,6 +2,7 @@ module.exports = (state, emitter) => {
   state.searchCriteria = '';
   state.currentSearch = '';
   state.searchResults = [];
+  state.parsedDetails = [];
   state.category = 'blank';
   state.categories = [
     {name: 'Search All Categories', categoryId: 'blank'},
