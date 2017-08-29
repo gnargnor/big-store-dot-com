@@ -3,6 +3,9 @@ module.exports = (state, emitter) => {
   state.currentSearch = '';
   state.searchResults = [];
   state.parsedDetails = [];
+  state.bigStoreCart = [];
+  state.qtyById = [];
+  state.maxQty = 10;
   state.category = 'blank';
   state.categories = [
     {name: 'Search All Categories', categoryId: 'blank'},

@@ -154,12 +154,13 @@ module.exports = (state, emitter) => {
     `,
 
     row: `
-      width: 100%;
-      whitespace: normal;
+      white-space: normal;
       overflow: auto;
       height: auto;
       min-height: 200px;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-content: center;
       background: white;
       color: black;
       margin: 0 auto;
@@ -167,30 +168,103 @@ module.exports = (state, emitter) => {
       border-bottom: 1px solid grey;`,
 
     resultLeft: `
-      float: left;
-      height: 100%;
+      order: 1;
+      height: auto;
       width: 30%;
-      flex: 30%;
+      flex: 1 1 30%;
       overflow: hidden;
-      display: inline-block;
-      vertical-align: middle;
-      text-align: center;`,
+      text-align: center;
+      align-content: center;
+      `,
+
 
     image: `
       height:200px;
-      
+      align-self: center;
       `,
+    
+    noImage: `
+      height:200px;
+      line-height: 200px;
+    `,
 
     resultRight: `
-      float: right;
-      height: 100%;
-      width: 70%
-      flex:70%;
-      display: inline-block;
-      text-align: right;
+      order: 2;
+      height: auto;
+      min-height: 200px;
+      width: 70%;
+      flex: 1 1 70%;
       vertical-align: top;
-      padding: 0 10px;
-      `,
+      padding: 0;
+    `,
+
+    rightSide: `
+      display: flex;
+      justify-content: space-evenly;
+      align-items: stretch;
+      margin: 10px;
+    `,
+
+    descriptionLeft: `
+      order: 1;
+      flex: 1 1 50%;
+      height: 100%;
+      min-height: 200px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    `,
+
+    descriptionTopLeft: `
+      order: 1;
+    `,
+
+    descriptionBottomLeft: `
+      order: 2;
+      flex: 1 1 50%;
+      display: flex;
+      justify-content: flex-end;
+    `,
+
+    descriptionRight: `
+      order: 2;
+      flex: 1 1 50%;
+      height: 100%;
+      min-height: 200px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-content: flex-end;
+    `,
+
+    descriptionTopRight: `
+      order: 1;
+      flex: 1 1 50%;
+    `,
+
+    descriptionBottomRight: `
+      order: 2;
+      flex: 1 1 50%;
+    `,
+
+    addToCart: `
+      flex 1 1 100%;
+      text-align: right;
+    `,
+
+    addToCartButton: `
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 24px;
+      color: #474747;
+      border-color: #f2ca00;
+      background-color: #ffd500;
+      border-radius: 4px;
+      background-image: linear-gradient(180deg,#ffd500 0,#fff200 33%,#fff200 67%,#ffd500 100%);
+      background-size: 100% 300%;
+      background-position: 0 100%;
+    `,
     
     productName: `
       font-size: 14px;
@@ -198,17 +272,40 @@ module.exports = (state, emitter) => {
     `,
 
     label: `
-      font-size: 10px;
+      font-size: 12px;
       font-style: italic;
+      margin-right: 5px;
+    `,
+
+    studio: `
+      font-size: 12px;
     `,
 
     price: `
-      font-size: 20px;
+      font-size: 16px;
       text-decoration: line-through;
     `,
 
     salePrice: `
       font-size: 28px;
+    `,
+
+    artist: `
+      font-size: 24px;
+      font-weight: bolder;
+      margin: 4px 0;
+    `,
+
+    genre: `
+      font-size: 18px;
+    `,
+
+    brand: `
+      font-size: 20px;
+    `,
+
+    releaseDate: `
+      font-size: 14px;
     `,
 
     clearFloat: `

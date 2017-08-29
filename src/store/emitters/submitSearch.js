@@ -20,10 +20,14 @@ module.exports = (state, emitter) => {
 
     function parseSearchResults(searchResults) {
       let parsedDetails = [];
+      state.qtyById = [];
       searchResults.map(result => {
         let productDetails = {};
         let typeDetails;
         productDetails.generalProperties = parseGeneral(result);
+        productDetails.rawResults = result;
+        productDetails.id = result.sku;
+        state.qtyById.push({id: productDetails.id, qty: 0});
         switch (result.type) {
           case 'Music' :
             productDetails.typeDetails = parseMusic(result);
@@ -87,7 +91,11 @@ module.exports = (state, emitter) => {
             generalProperties.salePrice = currentResult[property];
             return;
           case 'shipping':
-            generalProperties.shippingCost = currentResult[property];          
+            generalProperties.shippingCost = currentResult[property];
+            return;
+          case 'name':
+            generalProperties.name = currentResult[property];
+            return;          
           default:
             return;
         }
@@ -107,7 +115,7 @@ module.exports = (state, emitter) => {
             musicDetails.format = detail.value;
             return;
           case 'Product Title':
-            musicDetails.productTitle = detail.value;
+            musicDetails.productName = detail.value;
             return;
           case 'Label':
             musicDetails.label = detail.value;
@@ -128,16 +136,16 @@ module.exports = (state, emitter) => {
       details.map(detail => {
         switch (detail.name) {
           case 'Product Title' :
-            movieDetails.productTitle = detail.value;
+            movieDetails.productName = detail.value;
             return;
           case 'Format' :
             movieDetails.format = detail.value;
             return;
           case 'Studio' :
-            movieDetails.format = detail.value;
+            movieDetails.studio = detail.value;
             return;
           case 'Release Date' :
-            movieDetails.format = detail.value;
+            movieDetails.releaseDate = detail.value;
             return;
           default:
             return;
