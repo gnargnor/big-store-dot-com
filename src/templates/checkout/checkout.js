@@ -1,16 +1,15 @@
 const html = require('choo/html');
+let displayCart = require('./displayCart');
 let displayCatCart = require('./subviews/displayCatCart');
+let searchBar = require('../searchBar/searchBar');
 
 module.exports = (state, emit) => {
   return html`
     <div style=${state.style.checkout}>
+      ${searchBar(state, emit)}
       <div style=${state.style.checkoutContainer}>
-        <h1 style=${state.style.headingH1}>Cart</h1>
-        <div style=${state.style.cart}>
-          ${displayCatCart(state, emit)}
-        </div>
-        <button onclick=${checkout}>Sounds good!</button>
-        ${noDeal()}
+        <p style=${state.style.checkoutHeader}>Your Cart</p>
+        ${displayCart(state, emit)}
       </div>
     </div>
   `

@@ -8,10 +8,8 @@ module.exports = (state, emitter) => {
       font-family: 'Arial', 'Helvetica', sans-serif;`,
 
     homepage: `
-      color: white;
-      background: #003b64;
-      height: 100%;
-      padding: 20px 30px;`,
+      background: white;
+      color: red;`,
 
     homepageContainer: `
       max-width: 1008px;
@@ -170,31 +168,44 @@ module.exports = (state, emitter) => {
     resultLeft: `
       order: 1;
       height: auto;
-      width: 30%;
-      flex: 1 1 30%;
+      min-height: 200px;
+      line-height: 200px;
+      width: 40%;
+      flex: 1 1 40%;
       overflow: hidden;
       text-align: center;
-      align-content: center;
+      align-items: center;
       `,
 
 
     image: `
       height:200px;
       align-self: center;
+      vertical-align: middle;
+      margin: 10px;
       `,
     
     noImage: `
-      height:200px;
+      height: 200px;
+      width: 200px;
       line-height: 200px;
+      border: 1px solid black;
+      text-align: center;
+      margin: 0 auto;
+    `,
+
+    noImageText: `
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
     `,
 
     resultRight: `
       order: 2;
       height: auto;
       min-height: 200px;
-      width: 70%;
-      flex: 1 1 70%;
-      vertical-align: top;
+      width: 60%;
+      flex: 1 1 60%;
       padding: 0;
     `,
 
@@ -207,50 +218,53 @@ module.exports = (state, emitter) => {
 
     descriptionLeft: `
       order: 1;
-      flex: 1 1 50%;
+      flex: 1 1 65%;
       height: 100%;
       min-height: 200px;
       text-align: left;
       display: flex;
       flex-direction: column;
       justify-content: center;
+
     `,
 
     descriptionTopLeft: `
       order: 1;
+
     `,
 
     descriptionBottomLeft: `
       order: 2;
-      flex: 1 1 50%;
-      display: flex;
-      justify-content: flex-end;
+
     `,
 
     descriptionRight: `
       order: 2;
-      flex: 1 1 50%;
+      flex: 1 1 35%;
       height: 100%;
       min-height: 200px;
       text-align: right;
       display: flex;
       flex-direction: column;
-      align-content: flex-end;
+      justify-content: flex-end;
     `,
 
     descriptionTopRight: `
-      order: 1;
-      flex: 1 1 50%;
+      order:1;
+
     `,
 
     descriptionBottomRight: `
       order: 2;
-      flex: 1 1 50%;
+      align-items: flex-end;
+      text-align: right;
     `,
 
     addToCart: `
       flex 1 1 100%;
       text-align: right;
+      self-align: flex-end;
+      padding: 5px 0 0
     `,
 
     addToCartButton: `
@@ -267,14 +281,21 @@ module.exports = (state, emitter) => {
     `,
     
     productName: `
-      font-size: 14px;
-      font-style: uppercase;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 5px 0 5px;
+      padding: 0;
     `,
 
     label: `
       font-size: 12px;
-      font-style: italic;
-      margin-right: 5px;
+      margin: 0 5px 0;
+      padding: 0;
+    `,
+
+    format: `
+      font-size: 16px;
+      font-style: none;
     `,
 
     studio: `
@@ -284,10 +305,15 @@ module.exports = (state, emitter) => {
     price: `
       font-size: 16px;
       text-decoration: line-through;
+      margin: 0;
+      padding: 0;
     `,
 
     salePrice: `
-      font-size: 28px;
+      font-size: 24px;
+      font-weight: bolder;
+      margin: 0;
+      padding: 0;
     `,
 
     artist: `
@@ -324,6 +350,79 @@ module.exports = (state, emitter) => {
       max-width: 1008px;
       margin: 0 auto;
       color: #002e4e;
+    `,
+
+    checkoutHeader: `
+      font-size: 32px;
+    `,
+
+    checkoutTable: `
+      display: flex;
+      flex-wrap: wrap;
+    `,
+
+    checkoutTableHeadItem: `
+      box-sizing: border-box;
+      flex-grow: 1;  
+      font-size: 12px;
+      width: 40%;
+      padding: 5px;
+      border: 1px solid black;
+    `,
+
+    checkoutTableHeadAvailability: `
+      box-sizing: border-box;
+      flex-grow: 1;  
+      font-size: 12px;
+      width: 30%;
+      padding: 5px;
+      border: 1px solid black;
+    `,
+
+    checkoutTableHeadQuantity: `
+      box-sizing: border-box;
+      flex-grow: 1;  
+      font-size: 12px;
+      width: 20%;
+      padding: 5px;
+      border: 1px solid black;
+    `,
+
+    checkoutTableHeadPrice: `
+      box-sizing: border-box;
+      flex-grow: 1;  
+      font-size: 12px;
+      width: 10%;
+      padding: 5px;
+      border: 1px solid black;
+    `,
+
+    checkoutTableItem: `
+      box-sizing: border-box;
+      flex-grow: 1;
+      width: 40%;
+      border: 1px solid red;
+    `,
+
+    checkoutTableAvailability: `
+      box-sizing: border-box;
+      flex-grow: 1;
+      width: 30%;
+      border: 1px solid red;
+    `,
+
+    checkoutTableQuantity: `
+      box-sizing: border-box;
+      flex-grow: 1;
+      width: 20%;
+      border: 1px solid red;
+    `,
+
+    checkoutTablePrice: `
+      box-sizing: border-box;
+      flex-grow: 1;
+      width: 10%;
+      border: 1px solid red;
     `,
 
     cart: `

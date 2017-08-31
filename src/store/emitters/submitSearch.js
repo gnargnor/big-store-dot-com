@@ -66,6 +66,8 @@ module.exports = (state, emitter) => {
     }
 
     function parseGeneral(currentResult) {
+      let arbitraryMarkupPercentage = (Math.random() * 3) / 10 + 1;
+      console.log(arbitraryMarkupPercentage);
       let generalProperties = {};
       Object.keys(currentResult).map(property => {
         switch (property) {
@@ -85,10 +87,10 @@ module.exports = (state, emitter) => {
             generalProperties.freeShipping = currentResult[property];
             return;
           case 'regularPrice':
-            generalProperties.regularPrice = currentResult[property];
+            generalProperties.regularPrice = (currentResult[property] * arbitraryMarkupPercentage).toFixed(2);
             return;
           case 'salePrice':
-            generalProperties.salePrice = currentResult[property];
+            generalProperties.salePrice = (currentResult[property] * arbitraryMarkupPercentage).toFixed(2);
             return;
           case 'shipping':
             generalProperties.shippingCost = currentResult[property];
@@ -100,6 +102,14 @@ module.exports = (state, emitter) => {
             return;
         }
       });
+      if (generalProperties.salePrice > generalProperties.regularPrice) {
+        let newSalePrice = generalProperties.regularPrice;
+        generalProperties.regularPrice = generalProperties.salePrice;
+        generalProperties.salePrice = newSalePrice;
+      }
+      let youSave = generalProperties.regularPrice - generalProperties.salePrice;
+      generalProperties.youSave = youSave;
+      console.log(youSave)
       return generalProperties;
     }
 

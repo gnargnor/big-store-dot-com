@@ -2,7 +2,7 @@ const html = require('choo/html');
 
 module.exports = (state) => {
   let formatPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 2});
-  let searchResults = state.searchResults;
+  // let searchResults = state.searchResults;
   let parsedDetails = state.parsedDetails;
   console.log('parsedDetails ', parsedDetails);
   return parsedDetails.map(result => {
@@ -24,7 +24,7 @@ module.exports = (state) => {
     if (!generalProperties.image) {
       return html`
         <div style=${state.style.noImage}>
-          <p>NO IMAGE AVAILABLE</p>
+          <span style=${state.style.noImageText}>NO IMAGE AVAILABLE</span>
         </div>
       `
     } else {
@@ -32,6 +32,53 @@ module.exports = (state) => {
         <img src=${generalProperties.image} style=${state.style.image} />
       `
     }
+  }
+
+  function generateAddToCart(result){
+    this.result = result;
+    let id = this.result.id;
+    let price = this.result.generalProperties.salePrice;
+    
+    let quantitySelected = 1;
+    let cost = price * quantitySelected;
+
+    let addToCart = () => {
+      let newCartItem = {id: this.result.id}
+      console.log('qty: ', quantitySelected);
+      let targetId = this.result.id;
+      console.log('targetId: ', targetId);
+      newCartItem.quantity = quantitySelected;
+      newCartItem.cost = cost;
+      state.bigStoreCart.push(newCartItem);
+      console.log(state.bigStoreCart);
+    }
+
+    let generateQtyDropdown = () => {
+      let qtyArray = [1,2,3,4,5];
+      return qtyArray.map(qtyOption => {
+        if (qtyOption === quantitySelected) {
+          return html `<option value=${qtyOption} selected>${qtyOption}</option>`;
+        } else {
+          return html `<option value=${qtyOption}>${qtyOption}</option>`;
+        }
+      })
+    }
+
+    let setQuantity = (e) => {
+      let newQuantity = Number(e.target.value);
+      quantitySelected = newQuantity;
+      cost = price * quantitySelected;
+    }
+
+    return html`
+      <div style=${state.style.addToCart}>
+        <button style=${state.style.addToCartButton} onclick=${addToCart}>Add To Cart</button><br />
+        <span style=${state.style.label}>qty:</span>
+        <select id=${result.id} onchange=${setQuantity}>
+          ${generateQtyDropdown()}
+        </select>
+      </div>
+    `
   }
 
   function displayType(result, typeDetails, generalProperties) {
@@ -54,7 +101,6 @@ module.exports = (state) => {
       default:
         return displayDefault(result, typeDetails, generalProperties);
     }
-
   }
 
   function displayMusic(result, typeDetails, generalProperties) {
@@ -63,28 +109,22 @@ module.exports = (state) => {
         <div style=${state.style.rightSide}>
           <div style=${state.style.descriptionLeft}>
             <div style=${state.style.descriptionTopLeft}>
-              <p style=${state.style.artist}>${typeDetails.artist}</p>
               <p style=${state.style.productName}>${typeDetails.productName}</p>
-              <p style=${state.style.format}>${typeDetails.format}</p>
+              <p style=${state.style.artist}>${typeDetails.artist}</p>
             </div>
             <div style=${state.style.descriptionBottomLeft}>
-              <div style=${state.style.addToCart}>
-                <button id=${result.id} style=${state.style.addToCartButton} onclick=${addToCart}>Add To Cart</button><br />
-                <span style=${state.style.label}>qty:</span>
-                <select id=${result.id} onchange=${setQuantity}>
-                  ${generateQtyDropdown(result.id)}
-                </select>
-              </div>
+              <p style=${state.style.format}>${typeDetails.format}</p>
+              <p style=${state.style.studio}>${typeDetails.label}</p>
+              <p style=${state.style.label}>genre:<span style=${state.style.genre}>${typeDetails.genre}</span></p>
             </div>
           </div>
           <div style=${state.style.descriptionRight}>
             <div style=${state.style.descriptionTopRight}>
-              <p style=${state.style.studio}>${typeDetails.label}</p>
-              <p style=${state.style.genre}><span style=${state.style.label}>genre:</span>${typeDetails.genre}</p>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price: <span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-              <p style=${state.style.label}>Sale Price: <span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+              <p style=${state.style.label}>was:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+              ${generateAddToCart(result)}
             </div>
           </div>
         </div>
@@ -92,123 +132,189 @@ module.exports = (state) => {
     `
   }
 
-  function generateAddToCart(){
-    /** put the code that will replace the wonkiness below here */
-  }
-
-  function addToCart(e) {
-    let targetId = Number(e.target.id);
-    state.qtyById.map(product => {
-      if (product.id === targetId) {
-        state.bigStoreCart.push(product);
-        return;
-      } else {
-        return;
-      }
-    });
-    console.log(state.bigStoreCart);
-  }
-
-  function generateQtyDropdown(id) {
-    let qtyArray = [1,2,3,4,5,6,7,8,9,10];
-    return qtyArray.map(qty => {
-      return html`
-        <option id=${id} value=${qty}>${qty}</option>
-      `
-    })
-  }
-
-  function setQuantity(e) {
-    let targetId = Number(this.id);
-    let newQty = Number(e.target.value);
-    let newState = state.qtyById.map(product => {
-      if (product.id === targetId) {
-        product.qty = newQty;
-        return product;
-      } else {
-        return product;
-      }
-    })
-    state.qtyById = newState;
-    console.log(state.qtyById);
-  }
-
-  function displayMovie(typeDetails, generalProperties) {
+  function displayMovie(result, typeDetails, generalProperties) {
     return html`
       <div style=${state.style.resultRight}>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.format}>${typeDetails.format}</p>
-        <p style=${state.style.label}>${typeDetails.studio}</p>
-        <p style=${state.style.releaseDate}><span style=${state.style.label}>released:</span>${typeDetails.releaseDate}</p>
-        <p style=${state.style.label}>Regular Price: <span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price: <span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+              <p style=${state.style.productName}>${typeDetails.productName}</p>
+              <p style=${state.style.label}>format:<span style=${state.style.format}>${typeDetails.format}</span></p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+              <p style=${state.style.studio}>${typeDetails.studio}</p>
+              <p style=${state.style.releaseDate}><span style=${state.style.label}>released:</span>${typeDetails.releaseDate}</p>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>was:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
       </div>
     `
   }
 
-  function displayHardGood(typeDetails, generalProperties) {
+  function displayHardGood(result, typeDetails, generalProperties) {
     return html`
       <div style=${state.style.resultRight}>
-        <p style=${state.style.brand}>${typeDetails.brand}</p>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.color}><span style=${state.style.label}>color:</span>${typeDetails.color}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
-      </div>  
-    `
-  }
-
-  function displayGame(typeDetails, generalProperties) {
-    return html`
-      <div style=${state.style.resultRight}>
-        <p style=${state.style.productName}>${generalProperties.name}</p>
-        <p style=${state.style.studio}>${typeDetails.brand}</p>
-        <p style=${state.style.genre}><span style=${state.style.label}>genre:</span>${typeDetails.genre}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+              <p style=${state.style.productName}>${typeDetails.productName}</p>
+              <p style=${state.style.brand}>${typeDetails.brand}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+              <p style=${state.style.color}><span style=${state.style.label}>color:</span>${typeDetails.color}</p>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
       </div>
     `
   }
 
-  function displayBlackTie(typeDetails, generalProperties) {
+  function displayGame(result, typeDetails, generalProperties) {
     return html`
       <div style=${state.style.resultRight}>
-        <p style=${state.style.brand}>${typeDetails.brand}</p>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.genre}><span style=${state.style.label}>plan type:</span>${typeDetails.planType}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+              <p style=${state.style.productName}>${generalProperties.name}</p>
+              <p style=${state.style.studio}>${typeDetails.brand}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+              <p style=${state.style.genre}><span style=${state.style.label}>genre:</span>${typeDetails.genre}</p>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
       </div>
     `
   }
 
-  function displaySoftware(typeDetails, generalProperties) {
+  function displayBlackTie(result, typeDetails, generalProperties) {
     return html`
       <div style=${state.style.resultRight}>
-        <p style=${state.style.brand}>${typeDetails.brand}</p>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+              <p style=${state.style.productName}>${typeDetails.productName}</p>
+              <p style=${state.style.brand}>${typeDetails.brand}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+              <p style=${state.style.genre}><span style=${state.style.label}>plan type:</span>${typeDetails.planType}</p>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    `
+  }
+
+  function displaySoftware(result, typeDetails, generalProperties) {
+    return html`
+      <div style=${state.style.resultRight}>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+              <p style=${state.style.productName}>${typeDetails.productName}</p>
+              <p style=${state.style.brand}>${typeDetails.brand}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  `
+  }
+
+  function displayBundle(result, typeDetails, generalProperties) {
+    return html`
+      <div style=${state.style.resultRight}>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+            <p style=${state.style.productName}>${typeDetails.productName}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
       </div>
   `
   }
 
-  function displayBundle(typeDetails, generalProperties) {
+  function displayDefault(result, typeDetails, generalProperties) {
     return html`
       <div style=${state.style.resultRight}>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
-      </div>
-  `
-  }
-
-  function displayDefault(typeDetails, generalProperties) {
-    return html`
-      <div style=${state.style.resultRight}>
-        <p style=${state.style.productName}>${typeDetails.productName}</p>
-        <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-        <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+        <div style=${state.style.rightSide}>
+          <div style=${state.style.descriptionLeft}>
+            <div style=${state.style.descriptionTopLeft}>
+            <p style=${state.style.productName}>${typeDetails.productName}</p>
+            </div>
+            <div style=${state.style.descriptionBottomLeft}>
+            </div>
+          </div>
+          <div style=${state.style.descriptionRight}>
+            <div style=${state.style.descriptionTopRight}>
+            </div>
+            <div style=${state.style.descriptionBottomRight}>
+              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
+              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              ${generateAddToCart(result)}
+            </div>
+          </div>
+        </div>
       </div>
     `
   }
