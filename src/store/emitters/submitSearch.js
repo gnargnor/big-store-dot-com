@@ -4,7 +4,7 @@ module.exports = (state, emitter) => {
   let searchCriteria = state.searchCriteria;
   let category = state.category;
 
-  request.get(`/api/search/${searchCriteria}/${category}`)
+  request.get(`/api/search/searchAll/${searchCriteria}/${category}`)
     .then(result => {
       let parsedDetails = parseSearchResults(result.data.products);
       state.currentSearch = state.searchCriteria;

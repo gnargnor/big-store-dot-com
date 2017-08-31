@@ -13,6 +13,7 @@ const updateSearchCriteria = require('./emitters/updateSearchCriteria');
 const updateCategory = require('./emitters/updateCategory');
 const submitSearch = require('./emitters/submitSearch');
 const callTheCops = require('./emitters/callTheCops');
+const getCartItem = require('./emitters/getCartItem');
 
 module.exports = (state, emitter) => {
   /** state */
@@ -20,7 +21,7 @@ module.exports = (state, emitter) => {
   header(state, emitter);
   cats(state, emitter);
   shopping(state, emitter);
-  callcops(state, emitter)
+  callcops(state, emitter);
 
   /** emitters */
   emitter.on('clickCats', () => clickCats(state, emitter));
@@ -30,4 +31,5 @@ module.exports = (state, emitter) => {
   emitter.on('updateCategory', (newCategory) => updateCategory(newCategory, state, emitter));
   emitter.on('submitSearch', () => submitSearch(state, emitter));
   emitter.on('callTheCops', () => callTheCops(state, emitter));
+  emitter.on('getCartItem', (itemId) => getCartItem(itemId, state, emitter));
 }

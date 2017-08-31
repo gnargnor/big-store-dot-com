@@ -397,6 +397,11 @@ module.exports = (state, emitter) => {
       border: 1px solid black;
     `,
 
+    checkoutTableRow: `
+      display: flex;
+      flex-wrap: wrap;
+    `,
+
     checkoutTableItem: `
       box-sizing: border-box;
       flex-grow: 1;
