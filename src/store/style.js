@@ -282,14 +282,14 @@ module.exports = (state, emitter) => {
     
     productName: `
       font-size: 18px;
-      font-weight: bold;
+      font-weight: bolder;
       margin: 5px 0 5px;
       padding: 0;
     `,
 
     label: `
       font-size: 12px;
-      margin: 0 5px 0;
+      margin: 0 5px 0 0;
       padding: 0;
     `,
 
@@ -318,7 +318,6 @@ module.exports = (state, emitter) => {
 
     artist: `
       font-size: 24px;
-      font-weight: bolder;
       margin: 4px 0;
     `,
 

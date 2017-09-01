@@ -115,15 +115,15 @@ module.exports = (state) => {
             <div style=${state.style.descriptionBottomLeft}>
               <p style=${state.style.format}>${typeDetails.format}</p>
               <p style=${state.style.studio}>${typeDetails.label}</p>
-              <p style=${state.style.label}>genre:<span style=${state.style.genre}>${typeDetails.genre}</span></p>
+              <p style=${state.style.genre}><span style=${state.style.label}>genre:</span>${typeDetails.genre}</p>
             </div>
           </div>
           <div style=${state.style.descriptionRight}>
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>was:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice * 1.3)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice * 1.2)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -150,8 +150,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>was:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -177,8 +177,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -204,8 +204,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -231,8 +231,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -258,8 +258,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -284,8 +284,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
@@ -309,8 +309,8 @@ module.exports = (state) => {
             <div style=${state.style.descriptionTopRight}>
             </div>
             <div style=${state.style.descriptionBottomRight}>
-              <p style=${state.style.label}>Regular Price:<span style=${state.style.price}>${formatPrice.format(generalProperties.regularPrice)}</span></p>
-              <p style=${state.style.label}>Sale Price:<span style=${state.style.salePrice}>${formatPrice.format(generalProperties.salePrice)}</span></p>
+              <p style=${state.style.price}><span style=${state.style.label}>was:</span>${formatPrice.format(generalProperties.regularPrice)}</p>
+              <p style=${state.style.salePrice}><span style=${state.style.label}>Sale Price:</span>${formatPrice.format(generalProperties.salePrice)}</p>
               ${generateAddToCart(result)}
             </div>
           </div>
