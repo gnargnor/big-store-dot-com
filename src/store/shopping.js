@@ -4,6 +4,7 @@ module.exports = (state, emitter) => {
   state.searchResults = [];
   state.parsedDetails = [];
   state.bigStoreCart = [];
+  state.itemDisplay = [];
   state.qtyById = [];
   state.maxQty = 10;
   state.category = 'blank';
