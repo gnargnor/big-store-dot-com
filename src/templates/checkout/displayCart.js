@@ -31,9 +31,9 @@ module.exports = (state, emit) => {
   
 
   return html `
-    <div>
-      <div style=${state.style.checkoutTable}>
-        <div style=${state.style.checkoutTableHeadItem}>Item</div>
+  <div>
+    <div style=${state.style.checkoutTable}>
+      <div style=${state.style.checkoutTableHeadItem}>Item</div>
         <div style=${state.style.checkoutTableHeadAvailability}>Availability</div>
         <div style=${state.style.checkoutTableHeadQuantity}>Quantity</div>
         <div style=${state.style.checkoutTableHeadPrice}>Price</div>
